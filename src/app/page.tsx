@@ -129,8 +129,8 @@ export default function Home() {
       {/* Tarifs */}
       <section id="tarifs" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-20">
         <h2 className="text-center font-[family-name:var(--font-display)] text-3xl font-bold sm:text-4xl">Tarifs</h2>
-        <p className="mt-3 text-center text-fog">Commence gratuitement. Passe à la vitesse supérieure quand ton jeu grandit.</p>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <p className="mt-3 text-center text-fog">Deux formules, sans engagement. Résiliable à tout moment.</p>
+        <div className="mt-12 grid gap-5 mx-auto max-w-4xl md:grid-cols-2">
           {PLANS.map((p) => (
             <div key={p.id} className={`relative flex flex-col rounded-3xl border p-7 ${p.highlight ? "glow border-ember/60 bg-ink-2" : "border-line bg-ink-2"}`}>
               {p.highlight && <span className="absolute -top-3 left-7 rounded-full bg-ember px-3 py-0.5 text-xs font-semibold text-ink">Populaire</span>}
@@ -143,7 +143,7 @@ export default function Home() {
                 ))}
               </ul>
               <Link href={`/inscription?plan=${p.id}`} className={`mt-8 ${p.highlight ? primary : ghost}`}>
-                {p.id === "free" ? "Commencer gratuitement" : `Choisir ${p.name}`}
+                {`Choisir ${p.name}`}
               </Link>
             </div>
           ))}

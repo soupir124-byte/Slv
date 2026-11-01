@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <AuthForm
       title="Crée ton compte"
-      subtitle="Gratuit. Ton premier jeu en quelques minutes."
+      subtitle="Ton premier jeu Roblox en quelques minutes."
       action={signUp}
       submit="Créer mon compte"
       fields={[
