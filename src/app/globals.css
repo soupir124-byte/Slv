@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* Design system Embr */
+@theme {
+  --color-ink: #07070a;
+  --color-ink-2: #0e0e13;
+  --color-ink-3: #16161d;
+  --color-line: #24242d;
+  --color-ember: #ff6a1a;
+  --color-ember-2: #ff8c42;
+  --color-ember-deep: #c2410c;
+  --color-fog: #a1a1aa;
+  --color-mist: #71717a;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, sans-serif;
+  --radius-pill: 999px;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--color-ink); color: #fafafa; }
+
+.glow { box-shadow: 0 0 0 1px rgb(255 106 26 / .35), 0 10px 40px -10px rgb(255 106 26 / .55); }
+.grid-bg {
+  background-image:
+    linear-gradient(rgb(255 255 255 / .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / .035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at top, black 30%, transparent 75%);
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes flicker { 0%,100% { opacity: .9 } 50% { opacity: .55 } }
+.flicker { animation: flicker 3s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: 0 } }
+.caret::after { content: "▍"; color: var(--color-ember); animation: blink 1s steps(1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .flicker, .caret::after { animation: none; }
+}
