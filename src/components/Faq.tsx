@@ -4,7 +4,8 @@ const ITEMS = [
   ["Peut-on tester le jeu sur le site ?", "Le site affiche un aperçu 3D simplifié de la map. Le vrai test (physique, scripts, multijoueur) se fait dans Roblox Studio avec le bouton Play."],
   ["Quelle IA est utilisée ?", "Claude, développé par Anthropic, via son API officielle."],
   ["Le jeu m'appartient-il ?", "Oui. Le projet est enregistré dans ton propre fichier Roblox, tu le publies et le monétises comme tu veux, dans le respect des règles de Roblox."],
-  ["Puis-je annuler mon abonnement ?", "Oui, à tout moment depuis ton tableau de bord. Tes projets restent accessibles en lecture."],
+  ["Est-ce un abonnement ?", "Non. Tu paies une seule fois et tu gardes ta formule. Le nombre de générations IA se recharge chaque mois."],
+  ["J'ai Pro, puis-je passer à Ultimate ?", "Oui, à tout moment depuis ton tableau de bord. Tu ne paies que la différence entre les deux formules (49 €)."],
 ];
 
 export function Faq() {

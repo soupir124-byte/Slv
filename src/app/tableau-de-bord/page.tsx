@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { createClient } from "@/lib/supabase/server";
 import { getProfile, hasAccess } from "@/lib/profile";
-import { PLAN_LABEL } from "@/lib/plans";
+import { PLAN_LABEL, UPGRADE_PRICE, euros } from "@/lib/plans";
 import { signOut } from "@/app/auth/actions";
 
 export const metadata = { title: "Tableau de bord" };
@@ -35,6 +35,16 @@ export default async function Page() {
           {label}
         </p>
 
+        {profile?.plan === "pro" && !profile.is_admin && (
+          <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-2xl border border-ember/40 bg-ember/5 p-6 sm:flex-row sm:items-center">
+            <div>
+              <p className="font-semibold">Passe à Ultimate pour {euros(UPGRADE_PRICE)}</p>
+              <p className="mt-1 text-sm text-fog">Tu as déjà Pro : tu ne paies que la différence (au lieu de 99 €).</p>
+            </div>
+            <span className="rounded-full border border-line px-5 py-2.5 text-sm text-fog">Paiement bientôt disponible</span>
+          </div>
+        )}
+
         {access ? (
           <div className="mt-10 rounded-2xl border border-dashed border-line p-10 text-center text-fog">
             Tes projets apparaîtront ici à l&apos;étape 4.
@@ -42,7 +52,7 @@ export default async function Page() {
         ) : (
           <div className="mt-10 rounded-2xl border border-line bg-ink-2 p-8 text-center">
             <p className="font-semibold">Choisis une formule pour commencer à créer.</p>
-            <p className="mt-2 text-sm text-fog">Pro à 50 €/mois ou Ultimate à 99 €/mois. Le paiement sera activé prochainement.</p>
+            <p className="mt-2 text-sm text-fog">Pro à 50 € ou Ultimate à 99 €, en paiement unique. Le paiement sera activé prochainement.</p>
             <Link href="/#tarifs" className="mt-6 inline-flex rounded-full bg-ember px-6 py-3 font-semibold text-ink hover:bg-ember-2">Voir les formules</Link>
           </div>
         )}

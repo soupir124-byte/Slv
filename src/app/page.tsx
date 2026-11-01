@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { StudioDemo } from "@/components/StudioDemo";
 import { Faq } from "@/components/Faq";
-import { PLANS } from "@/lib/plans";
+import { PLANS, euros, UPGRADE_PRICE } from "@/lib/plans";
 
 const btn = "inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all";
 const primary = `${btn} bg-ember text-ink hover:bg-ember-2 hover:-translate-y-0.5`;
@@ -129,24 +129,35 @@ export default function Home() {
       {/* Tarifs */}
       <section id="tarifs" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-20">
         <h2 className="text-center font-[family-name:var(--font-display)] text-3xl font-bold sm:text-4xl">Tarifs</h2>
-        <p className="mt-3 text-center text-fog">Deux formules, sans engagement. Résiliable à tout moment.</p>
+        <p className="mt-3 text-center text-fog">Un seul paiement. Pas d&apos;abonnement, pas de surprise.</p>
         <div className="mt-12 grid gap-5 mx-auto max-w-4xl md:grid-cols-2">
           {PLANS.map((p) => (
             <div key={p.id} className={`relative flex flex-col rounded-3xl border p-7 ${p.highlight ? "glow border-ember/60 bg-ink-2" : "border-line bg-ink-2"}`}>
               {p.highlight && <span className="absolute -top-3 left-7 rounded-full bg-ember px-3 py-0.5 text-xs font-semibold text-ink">Populaire</span>}
               <h3 className="text-lg font-semibold">{p.name}</h3>
               <p className="text-sm text-mist">{p.tagline}</p>
-              <p className="mt-5 font-[family-name:var(--font-display)] text-4xl font-bold">{p.price}<span className="text-base font-normal text-mist"> /mois</span></p>
-              <ul className="mt-6 flex-1 space-y-2.5 text-sm text-fog">
-                {[p.generations, p.projects, ...p.features].map((f) => (
-                  <li key={f} className="flex gap-2"><span className="text-ember">✓</span>{f}</li>
+              <p className="mt-5 font-[family-name:var(--font-display)] text-4xl font-bold">{euros(p.price)}<span className="text-base font-normal text-mist"> paiement unique</span></p>
+              <div className="mt-6 flex-1 space-y-5">
+                {p.details.map((d) => (
+                  <div key={d.title}>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-mist">{d.title}</p>
+                    <ul className="space-y-2 text-sm text-fog">
+                      {d.items.map((f) => (
+                        <li key={f} className="flex gap-2"><span className="text-ember">✓</span>{f}</li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
+              </div>
               <Link href={`/inscription?plan=${p.id}`} className={`mt-8 ${p.highlight ? primary : ghost}`}>
                 {`Choisir ${p.name}`}
               </Link>
             </div>
           ))}
+        </div>
+        <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-line bg-ink-2 p-5 text-center text-sm text-fog">
+          <span className="font-semibold text-white">Déjà Pro ?</span> Passe à Ultimate en ne payant que la différence :{" "}
+          <span className="font-semibold text-ember">{euros(UPGRADE_PRICE)}</span> au lieu de {euros(PLANS[1].price)}.
         </div>
       </section>
 
