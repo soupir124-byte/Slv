@@ -36,5 +36,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|icon.svg|robots.txt|sitemap.xml).*)"],
+  matcher: ["/((?!_next/static|_next/image|icon.svg|robots.txt|sitemap.xml|manifest.webmanifest|sw.js|hors-ligne.html|.*\\.png).*)"],
 };

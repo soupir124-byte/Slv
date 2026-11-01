@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 import { SITE_URL } from "@/lib/site";
+import { InstallApp } from "@/components/InstallApp";
 
 const description =
   "Crée ton propre jeu Roblox sans coder : décris ton idée, l'IA construit la map, écrit les scripts Luau et les interfaces directement dans Roblox Studio.";
@@ -16,7 +17,12 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "Embr — Crée ton jeu Roblox avec l'IA", description },
   // Code fourni par Google Search Console (méthode "Balise HTML")
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
+  applicationName: "Embr",
+  appleWebApp: { capable: true, title: "Embr", statusBarStyle: "black-translucent" },
+  icons: { apple: "/apple-touch-icon.png" },
 };
+
+export const viewport: Viewport = { themeColor: "#07070a", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -28,7 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <InstallApp />
+      </body>
     </html>
   );
 }
